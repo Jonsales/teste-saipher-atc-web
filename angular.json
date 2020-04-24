@@ -28,9 +28,15 @@
               "src/assets"
             ],
             "styles": [
+              "src/assets/vendors/fontawesome-free/css/all.min.css",
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [
+              "src/assets/js/jquery.min.js",
+              "src/assets/js/bootstrap.bundle.min.js",
+              "src/assets/js/jquery.easing.min.js",
+              "src/assets/js/default.js"
+            ]
           },
           "configurations": {
             "production": {

@@ -1,0 +1,12 @@
+<li [id]="idItem" class="nav-item">
+    <a class="nav-link collapsed" href="#" data-toggle="collapse" [attr.data-target]="'#collapseTwo_'+idItem" aria-expanded="true" [attr.aria-controls]="'collapseTwo_'+idItem">
+      <i [class]="icone"></i>
+      <span>{{titulo}}</span>
+    </a>
+    <div id="collapseTwo_{{idItem}}" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+      <div class="bg-white py-2 collapse-inner rounded">
+        <h6 class="collapse-header">{{ subtitulo }}:</h6>
+        <ng-content></ng-content>
+      </div>
+    </div>
+  </li>
