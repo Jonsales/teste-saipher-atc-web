@@ -28,6 +28,37 @@ export class BaseMessages{
           });
       }
 
+      exibeMensagemExclusao(titulo:string) : Observable<boolean>{
+        let subjectRetorno$ = new Subject<boolean>();
+        Swal.fire({
+          title: titulo,
+          text: "",
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonText: "Confirmar a exclusão",
+          cancelButtonText: "Cancelar",
+          reverseButtons: true
+        }).then(result => {
+          subjectRetorno$.next(result.value);
+        });
+
+        return subjectRetorno$.asObservable();
+      }
+
+      exibirMensagem(titulo: string, erro: string): Observable<boolean>{
+        let subjectRetorno$ = new Subject<boolean>();
+        Swal.fire({
+            title: titulo,
+            html: erro,
+            icon: 'warning',
+            confirmButtonText: 'OK',
+            showCancelButton: false
+          }).then((result)=>{
+            subjectRetorno$.next(true);
+          });
+          return subjectRetorno$.asObservable();
+      }
+
       exibeMensagemDeConfirmacaoEdicao(): Observable<boolean>{
         let subjectRetorno$ = new Subject<boolean>();
 

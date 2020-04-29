@@ -2,7 +2,11 @@
   <div class="col-sm-12 col-md-6">
     <div id="dataTable_length" class="datatable_filter">
       <label>Exibir 
-        <select name="dataTable_length" class="custom-select custom-select-sm form-control form-control-sm form-control-line">
+        <select 
+        #mySelect
+        (change)='changeQuantidade(mySelect.value)'
+        name="requestPaginate.quantidadePorPagina" 
+        class="custom-select custom-select-sm form-control form-control-sm form-control-line">
           <option value="10">10</option>
           <option value="25">25</option>
           <option value="50">50</option>
@@ -14,7 +18,12 @@
   <div class="col-sm-12 col-md-6">
     <div id="dataTable_filter" class="datatable_filter">
       <label class="float-right">Pesquisar:
-        <input type="search" class="form-control form-control-sm form-control-line" placeholder="">
+        <input type="search" 
+        id='pesquisa'
+        #pesquisa
+        (change)='changePesquisar(pesquisa.value)'
+        (keyup.enter)='pesquisar(pesquisa.value)'
+        class="form-control form-control-sm form-control-line" placeholder="">
       </label>
     </div>
   </div>
@@ -25,8 +34,10 @@
       <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
         <thead>
           <tr>
-            <th *ngFor="let titulo of titulos"> 
-              {{ titulo }}
+            <th 
+            *ngFor="let titulo of titulos; let i = index" [attr.data-index]="i" (click)="orderBy(i)" [ngClass]="{'pointer': order[i] != undefined}"> 
+            {{ titulo }}
+              <i [class]="classeSorting(i)"></i>
             </th>
           </tr>
         </thead>
@@ -48,20 +59,20 @@
 <div class="row" *ngIf="resultPaginate != undefined">
   <div class="col-sm-12 col-md-5">
     <div>
-      Exibindo {{ resultPaginate.paginaAtual}} à {{ resultPaginate.totalPaginas}} de {{ resultPaginate.quantidadeItens }} intens
+      Exibindo {{ resultPaginate.paginaAtual}} à {{ resultPaginate.quantidadeItensPorPagina}} de {{ resultPaginate.quantidadeItens }} intens
     </div>
   </div>
   <div class="col-sm-12 col-md-7">
     <div>
       <ul class="pagination float-right" *ngFor="let item of counter(resultPaginate.totalPaginas)">
-        <li *ngIf="item==1" class="paginate_button page-item previous disabled" id="dataTable_previous">
-          <a href="#" aria-controls="dataTable" data-dt-idx="0" tabindex="0" class="page-link">Anterior</a>
+        <li (click)="anterior()" *ngIf="item==1" [class]="classAnterior()">
+          <a class="page-link">Anterior</a>
         </li>
-        <li class="paginate_button page-item" [ngClass]="{'active' : item == resultPaginate.paginaAtual}">
-          <a href="#" class="page-link">{{item}}</a>
+        <li (click)="paginate(item)" class="paginate_button page-item pointer" [ngClass]="{'active' : item == resultPaginate.paginaAtual}">
+          <a class="page-link">{{item}}</a>
         </li>
-        <li *ngIf="item==resultPaginate.totalPaginas" class="paginate_button page-item next" id="dataTable_next">
-          <a href="#" aria-controls="dataTable" data-dt-idx="7" tabindex="0" class="page-link">Próximo</a>
+        <li (click)="proximo()" *ngIf="item==resultPaginate.totalPaginas" [class]="classProximo()">
+          <a class="page-link">Próximo</a>
         </li>
       </ul>
     </div>

@@ -10,7 +10,7 @@
         <div class="card-body">
           <div class="row">
             <div class="col-lg-12">
-              <a href="#" class="btn btn-primary btn-icon-split float-right">
+              <a [routerLink]="['plano-voo/detalhes/0']" class="btn btn-primary btn-icon-split float-right">
                 <span class="icon text-white-50">
                   <i class="fas fa-plus"></i>
                 </span>
@@ -25,7 +25,13 @@
                   <h6 class="m-0 font-weight-bold text-primary">Itens:</h6>
                 </div>
                 <div class="card-body">
-                    <app-table [titulos]="titulos" [resultPaginate]="responsePaginate">
+                  <app-table 
+                  [titulos]="titulos" 
+                  [order]="order" 
+                  [resultPaginate]="responsePaginate" 
+                  [requestPaginate]="requestPaginate"
+                  (pesquisaEmiter)='pesquisar($event)'
+                  (listarEmiter)="buscarLista($event)">
                       <tr *ngFor="let item of results">
                         <td>{{ item.id }}</td>
                         <td>{{ item.numeroVoo }}</td>
@@ -34,6 +40,14 @@
                         <td>{{ item.origem }}</td>
                         <td>{{ item.destino }}</td>
                         <td>{{ item.dataHoraVoo | date:'dd/MM/yyyy'}}</td>
+                        <td>
+                          <app-table-item-acoes
+                          [link]="'plano-voo/detalhes/'+item.id"
+                          [titulo]="'Plano de Voos'"
+                          [item]='item'
+                          (exluirEmiter)="excluirItem($event, 'Plano de Voo?')">
+                        </app-table-item-acoes>
+                        </td>
                       </tr>
                     </app-table>
                 </div>

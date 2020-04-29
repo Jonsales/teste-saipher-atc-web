@@ -1,1 +1,3 @@
-export class BaseFilter{}
+export class BaseFilter{
+    valor: string;
+}

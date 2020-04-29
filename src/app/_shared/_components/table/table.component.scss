@@ -2,3 +2,70 @@
     width: auto;
     display: inline-block;
 }
+.pointer {
+    cursor: pointer;
+}
+
+.sorting{
+    font-family: "Font Awesome 5 Free";
+    display: inline-block;
+    vertical-align: middle;
+    font-weight: 900;
+    font-size: 10px;
+    text-align: center;
+    font-style: normal;
+}
+
+.sorting:before {    
+    content: "\f30c";
+    padding-right: 3px;
+    opacity: 0.5;
+  }
+
+.sorting:after {
+    content: "\f309";
+    font-weight: 900;
+    opacity: 0.5;
+}
+
+.sorting_asc{
+    font-family: "Font Awesome 5 Free";
+    display: inline-block;
+    vertical-align: middle;
+    font-weight: 900;
+    font-size: 10px;
+    text-align: center;
+    font-style: normal;
+}
+
+.sorting_asc:before {    
+    content: "\f30c";
+    padding-right: 3px;
+    opacity: 0.5;
+  }
+
+.sorting_asc:after {
+    content: "\f309";
+    font-weight: 900;
+}
+
+.sorting_desc{
+    font-family: "Font Awesome 5 Free";
+    display: inline-block;
+    vertical-align: middle;
+    font-weight: 900;
+    font-size: 10px;
+    text-align: center;
+    font-style: normal;
+}
+
+.sorting_desc:before {    
+    content: "\f30c";
+    padding-right: 3px;
+  }
+
+.sorting_desc:after {
+    content: "\f309";
+    font-weight: 900;
+    opacity: 0.5;
+}

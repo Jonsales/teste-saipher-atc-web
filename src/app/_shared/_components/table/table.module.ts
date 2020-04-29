@@ -1,14 +1,20 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TableComponent } from './table.component';
+import { TableItemAcoesComponent } from './table-item-acoes/table-item-acoes.component';
+import { NgbTooltipModule } from "@ng-bootstrap/ng-bootstrap";
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [TableComponent],
+  declarations: [TableComponent, TableItemAcoesComponent],
   imports: [
-    CommonModule
+    CommonModule,
+    NgbTooltipModule
   ],
   exports:[
-    TableComponent
+    TableComponent,
+    FormsModule,
+    TableItemAcoesComponent
   ]
 })
 export class TableModule { }

@@ -5,12 +5,10 @@ import { BaseResponseModel } from '../../_models/base/base-response-model';
 import { BaseMessages } from '../../_services/helper/base-messages.service';
 import { ToastrService } from 'ngx-toastr';
 import { HttpErrorResponse } from '@angular/common/http';
+import { Router } from '@angular/router';
 
-const unauthorized: number = 401;
 const not_found: number = 404;
 const internal_server_error: number = 500;
-const success: number = 200;
-const no_content: number = 204;
 const bad_request: number = 400;
 
 export class BaseComponent<
@@ -20,13 +18,13 @@ export class BaseComponent<
     {
 
         constructor(
-            protected toastr: ToastrService) {
+            protected toastr: ToastrService, protected _router: Router,) {
                 super(toastr);
         }
 
         protected verificarErro(error: HttpErrorResponse) {
             var erro : BaseResponseModel<TModel> = <BaseResponseModel<TModel>> error.error;
-            if(error.status == unauthorized || error.status == internal_server_error){
+            if(error.status == internal_server_error){
                 this.exibirErro(erro.erro.titulo, erro.erro.mensagem);
             }
             else if(error.status == bad_request){
