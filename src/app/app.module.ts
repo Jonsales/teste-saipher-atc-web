@@ -12,8 +12,10 @@ import { ToastrModule } from 'ngx-toastr';
 import { registerLocaleData } from '@angular/common';
 import localeBr from '@angular/common/locales/pt';
 import { loaderConfig, LoadingRequestInterceptor } from './_shared/_interceptors/loading-request.interceptor';
-import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
+import { NgbModule, NgbDateParserFormatter } from "@ng-bootstrap/ng-bootstrap";
 import { NgxUiLoaderModule } from "ngx-ui-loader";
+import { NgbDateCustomParserFormatter } from './_shared/_services/helper/ng-date-custom-format';
+
 registerLocaleData(localeBr, 'pt')
 
 @NgModule({
@@ -31,7 +33,11 @@ registerLocaleData(localeBr, 'pt')
     NgxUiLoaderModule.forRoot(loaderConfig),
     ToastrModule.forRoot({
       positionClass: "toast-top-right",
-      progressBar: true
+      progressBar: true,
+      closeButton: true,
+      timeOut: 5000,
+      extendedTimeOut: 2000,
+      progressAnimation: 'increasing'
     }),
   ],
   providers: [
@@ -51,7 +57,8 @@ registerLocaleData(localeBr, 'pt')
     {
       provide: LOCALE_ID,
       useValue: "pt"
-    }
+    },
+    {provide: NgbDateParserFormatter, useClass: NgbDateCustomParserFormatter}
   ],
   bootstrap: [AppComponent]
 })

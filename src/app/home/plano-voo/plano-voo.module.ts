@@ -6,7 +6,10 @@ import { PlanoVooComponent } from './plano-voo.component';
 import { FormsModule } from '@angular/forms';
 import { PlanoVooService } from 'src/app/_shared/_services/services/plano-voo.service';
 import { TableModule } from 'src/app/_shared/_components/table/table.module';
-import { NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbTooltipModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { CardsModule } from 'src/app/_shared/_components/cards/cards.module';
+import { FormDefaultModule } from 'src/app/_shared/_components/form-default/form-default.module';
+import { NgxMaskModule } from 'ngx-mask'
 
 @NgModule({
   declarations: [
@@ -18,7 +21,11 @@ import { NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
     PlanoVooRouting,
     FormsModule,
     TableModule,
-    NgbTooltipModule
+    CardsModule,
+    NgbTooltipModule,
+    FormDefaultModule,
+    NgbModule,
+    NgxMaskModule.forRoot()
   ],
   providers: [
     PlanoVooService

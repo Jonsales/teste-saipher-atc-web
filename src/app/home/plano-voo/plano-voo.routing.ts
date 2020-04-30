@@ -9,10 +9,6 @@ const routes: Routes = [
     component: PlanoVooComponent
   },
   {
-    path: "detalhes",
-    component: PlanoVooDetalhesComponent
-  },
-  {
     path: "detalhes/:id",
     component: PlanoVooDetalhesComponent
   }

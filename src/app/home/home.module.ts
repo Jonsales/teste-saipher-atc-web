@@ -6,7 +6,7 @@ import { MenuModule } from '../_shared/_components/menu/menu.module';
 import { NavBarComponent } from '../_shared/_components/nav-bar/nav-bar.component';
 import { FooterComponent } from '../_shared/_components/footer/footer.component';
 import { ScrollTopComponent } from '../_shared/_components/scroll-top/scroll-top.component';
-import { PlanoVooComponent } from './plano-voo/plano-voo.component';
+import { FormDefaultModule } from '../_shared/_components/form-default/form-default.module';
 
 @NgModule({
   declarations: [

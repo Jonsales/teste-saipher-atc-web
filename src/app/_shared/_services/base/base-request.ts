@@ -33,8 +33,6 @@ implements IBaseRequest<TModel, TFilter>{
         ).pipe(catchError(this.verificarErro));
     }
     get(id: number): Observable<BaseResponseModel<TModel>> {
-        
-
         return this._http.get<BaseResponseModel<TModel>>(
             this._config.url + this.url + `/${id}`
         ).pipe(catchError(this.verificarErro));

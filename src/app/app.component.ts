@@ -7,4 +7,6 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'teste-saipher-atc-web';
+  show = false;
+  autohide = true;
 }

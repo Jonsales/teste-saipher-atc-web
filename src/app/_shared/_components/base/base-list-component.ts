@@ -5,7 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { BaseComponent } from './base-component';
 import { BaseRequestModel } from '../../_models/base/base-request-model';
 import { BasePaginateDataModel } from '../../_models/base/base-paginate-data-model';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 declare var $: any;
 
 export abstract class BaseListComponent<
@@ -17,9 +17,10 @@ export abstract class BaseListComponent<
         constructor(
             protected toastr: ToastrService,
             protected _service: TService,
-            protected _router: Router
+            protected _router: Router,
+            protected _route: ActivatedRoute
             ) {
-                super(toastr, _router);
+                super(toastr, _router, _route, _service);
         }
 
         abstract titulos:string[];
@@ -40,7 +41,7 @@ export abstract class BaseListComponent<
                         this.results = success.data.itens;
                     }
                     else
-                        this.emiteToastrInfo('Nada encontrado','Não foi encontrado nenhum item para exibir.');
+                        this.emiteToastrWarning('Nada encontrado','Não foi encontrado nenhum item para exibir.');
                 },
                 error => {
                     this.verificarErro(error);

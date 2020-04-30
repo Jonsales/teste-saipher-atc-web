@@ -1,40 +1,124 @@
-<!-- Begin Page Content -->
-<div class="container-fluid">
+<app-cards-body [titulo]="'Plano de Voos'" [subtitulo]="'Detalhes'">
+  <a botao [routerLink]="['/plano-voo']" class="btn btn-light btn-icon-split float-right">
+     <span class="icon text-gray-600">
+     <i class="fas fa-arrow-left"></i>
+     </span>
+     <span class="text">Voltar para Lista</span>
+ </a>
 
-    <!-- Page Heading -->
-    <h1 class="h3 mb-2 text-gray-800">Planos de Voos</h1>
-    
-    <div class="row">
-      <div class="col-lg-12">
-        <div class="card shadow mb-4">
-          <div class="card-body">
-            <div class="row">
-              <div class="col-lg-12">
-                <a [routerLink]="['/plano-voo']" class="btn btn-light btn-icon-split float-right">
-                  <span class="icon text-gray-600">
-                    <i class="fas fa-arrow-left"></i>
-                  </span>
-                  <span class="text">Voltar para Lista</span>
-                </a>
+ <div body class="col-12">
+     <form #form="ngForm" (ngSubmit)="enviar()"> 
+         <div class="form-row">
+           <div [class]="formGroupClass(form, 'planoVoo.numeroVoo', 'col-md-4') ">
+             <label for="planoVoo.numeroVoo">Número do Voo</label>
+             <input type="text" 
+              mask="SSS9999"
+              maxlength="7"
+                placeholder="Ex.: AAA1234"
+               id="planoVoo.numeroVoo" 
+               name="planoVoo.numeroVoo"
+               [(ngModel)]="planoVoo.numeroVoo" 
+               class="form-control" />
+               <app-input-erro [form]="form" [prop]="'planoVoo.numeroVoo'"></app-input-erro>
+           </div>
+           <div [class]="formGroupClass(form, 'planoVoo.matriculaAeronave', 'col-md-4') ">
+             <label for="planoVoo.matriculaAeronave">Matrícula do Voo</label>
+             <input type="text" 
+                mask="SS-9999"
+                maxlength="7"
+                (change)="changeMatriculaVoo()"
+                placeholder="Ex.: AA1234"
+               id="planoVoo.matriculaAeronave" 
+               name="planoVoo.matriculaAeronave" 
+               [(ngModel)]="planoVoo.matriculaAeronave" 
+               class="form-control" />
+               <app-input-erro [form]="form" [prop]="'planoVoo.matriculaAeronave'"></app-input-erro>
+           </div>
+
+           <div [class]="formGroupClass(form, 'dataVoo', 'col-md-2') ">
+            <label for="dataVoo">Data do Voo</label>
+            <div class="input-group">
+              <input class="form-control date-picker" 
+                id="dataVoo" 
+                name="dataVoo" 
+                placeholder="dd/mm/yyyy" (click)="d.toggle()"
+                readonly
+                [(ngModel)]="dataVoo" 
+                (ngModelChange)="changeDate()"
+                ngbDatepicker #d="ngbDatepicker">
+              <div class="input-group-append">
+                <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button">
+                  <i class="fas fa-calendar-alt"></i>
+                </button>
               </div>
             </div>
-            <div class="row mt-4">
-              <div class="col-lg-12">
-                <div class="card shadow mb-4">
-
-                  <div class="col-sm-4 col-md-6">
-                    <label>Pesquisar:
-                      <input type="search" 
-                      id='pesquisa'
-                      class="form-control form-control-sm form-control-line" placeholder="">
-                    </label>
-                  </div>
-                  
-                </div>
-              </div>
-            </div>
+              <app-input-erro [form]="form" [prop]="'dataVoo'"></app-input-erro>
           </div>
-        </div>
-      </div>
+          <div [class]="formGroupClass(form, 'horaVoo', 'col-md-2') ">
+            <label for="horaVoo">Hora do Voo</label>
+              <input 
+              #time
+                id="horaVoo" 
+                name="horaVoo" 
+                type="time"
+                id="input"
+                class="form-control"
+                (blur)="changeDate()"
+                [(ngModel)]="horaVoo"
+                value="00:00">
+              <app-input-erro [form]="form" [prop]="'horaVoo'"></app-input-erro>
+          </div>
+          <div [class]="formGroupClass(form, 'planoVoo.tipoAeronave', 'col-md-4') ">
+            <label for="planoVoo.tipoAeronave">Tipo Aeronave</label>
+            <input type="text" 
+              mask="S999"
+              maxlength="4"
+              placeholder="Ex.: A123"
+              id="planoVoo.tipoAeronave" 
+              name="planoVoo.tipoAeronave" 
+              [(ngModel)]="planoVoo.tipoAeronave" 
+              class="form-control" />
+              <app-input-erro [form]="form" [prop]="'planoVoo.tipoAeronave'"></app-input-erro>
+          </div>
+          <div [class]="formGroupClass(form, 'planoVoo.origem', 'col-md-4') ">
+            <label for="planoVoo.origem">Origem</label>
+            <input type="text" 
+              mask="SSSS"
+              maxlength="4"
+              placeholder="Ex.: ABCD"
+              id="planoVoo.origem" 
+              name="planoVoo.origem" 
+              [(ngModel)]="planoVoo.origem" 
+              class="form-control" />
+              <app-input-erro [form]="form" [prop]="'planoVoo.origem'"></app-input-erro>
+          </div>
+          <div [class]="formGroupClass(form, 'planoVoo.destino', 'col-md-4') ">
+            <label for="planoVoo.destino">Destino</label>
+            <input type="text" 
+              mask="SSSS"
+              placeholder="Ex.: ABCD"
+              maxlength="4"
+              id="planoVoo.destino" 
+              name="planoVoo.destino" 
+              [(ngModel)]="planoVoo.destino" 
+              class="form-control" />
+              <app-input-erro [form]="form" [prop]="'planoVoo.destino'"></app-input-erro>
+          </div>
+       </div>
+       <div class="form-row">
+        <button [disabled]="form.invalid" class="btn btn-success btn-icon-split">
+          <span class="icon text-white">
+          <i class="fas fa-check"></i>
+          </span>
+          <span class="text">Salvar</span>
+        </button>
+       </div>
+     </form>
+ </div>
+</app-cards-body>
+
+ <div class="row">
+    <div class="col-12">
+      <pre>Form value: {{ planoVoo | json }}</pre>
     </div>
   </div>

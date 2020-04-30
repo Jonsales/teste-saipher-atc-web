@@ -10,8 +10,8 @@ export class BaseMessages{
         this.toastr.success(mensagem, titulo);
       }
   
-      emiteToastrInfo(titulo: string, mensagem: string){
-        this.toastr.info(mensagem, titulo);
+      emiteToastrWarning(titulo: string, mensagem: string){
+        this.toastr.warning(mensagem, titulo);
       }
   
       emiteToastrErro(titulo: string, mensagem: string){
