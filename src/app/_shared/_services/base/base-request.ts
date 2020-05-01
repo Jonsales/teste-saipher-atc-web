@@ -48,8 +48,8 @@ implements IBaseRequest<TModel, TFilter>{
         ).pipe(catchError(this.verificarErro));
     }
     delete(deleteItem: number): Observable<BaseResponseModel<TModel>> {
-        return this._http.request<BaseResponseModel<TModel>>('delete', 
-            this._config.url + this.url, { body: deleteItem }
+        return this._http.delete<BaseResponseModel<TModel>>( 
+        this._config.url + this.url + `/${deleteItem}`
         )
         .pipe(catchError(this.verificarErro));
     }

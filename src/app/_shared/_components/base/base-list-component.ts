@@ -64,6 +64,7 @@ export abstract class BaseListComponent<
             this._service.delete(item.id)
             .subscribe(
                 success => {
+                    this.emiteToastrSucess('Item excluído', 'Item excluído com sucesso.')
                     this.buscarLista(this.requestPaginate);
                 },
                 error => {
