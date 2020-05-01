@@ -1,3 +1,8 @@
+## Necessário ter na máquina instalado o Node.
+
+## Instalando Dependências
+
+Para iniciar o projeto, execute o comando `npm install`, e todas as suas dependências serão instaladas.
 
 ## Compilar projeto
 
