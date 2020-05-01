@@ -44,6 +44,7 @@ implements OnInit, AfterViewInit {
             this._service.get(id).subscribe(
               resp => {
                 this.planoVoo = resp.data;
+                this.converDate();
               },
               error =>{
                 this.verificarErro(error)
@@ -116,6 +117,15 @@ implements OnInit, AfterViewInit {
       var mes  = Number(this.dataVoo.month) < 10 ? '0'+this.dataVoo.month : this.dataVoo.month;
       var dtStr =`${mes}/${dia}/${this.dataVoo.year} ${hora}:${minuto}:00`;
       this.planoVoo.dataHoraVoo = new Date(dtStr);
+    }
+  }
+
+  converDate(){
+    if(this.planoVoo.dataHoraVoo)
+    {
+      var date = this.planoVoo.dataHoraVoo.toString();
+       this.dataVoo = { day: Number(date.substring(8, 10)), month: Number(date.substring(5, 7)), year: Number(date.substring(0, 4))};
+       this.horaVoo = `${ date.substring(11, 13)}:${ date.substring(14, 16)}`
     }
   }
 
